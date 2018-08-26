@@ -1,5 +1,7 @@
 Running Server :
 
+Enable sockets from file "php.ini" search "sockets" & remove ";" (comment) from its line.
+
 
 1. Change host address in index.php and server.php
 
