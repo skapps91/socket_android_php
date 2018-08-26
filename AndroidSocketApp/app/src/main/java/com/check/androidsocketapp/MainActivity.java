@@ -27,8 +27,7 @@ public class MainActivity extends AppCompatActivity {
     Button btn;
     TextView msgTxt;
 
-    //private String URL = "ws://192.168.1.8:9000/chat_test/demo1/server.php";
-    private String URL = "ws://192.168.1.13:9000/chat_test/demo1/server.php";
+    private String URL = "ws://192.168.1.13:9000/php_project/server.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +40,6 @@ public class MainActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                //connectToSocket();
 
                 if (mWebSocketClient == null) {
                     connectToSocket();
@@ -72,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        mWebSocketClient = new WebSocketClient(uri /*, new Draft_17()*/) {
+        mWebSocketClient = new WebSocketClient( uri ) {
             @Override
             public void onOpen(ServerHandshake serverHandshake) {
 
@@ -114,7 +111,6 @@ public class MainActivity extends AppCompatActivity {
         mWebSocketClient.connect();
 
 
-        //sendHitToAdmin();
 
 
     }
@@ -123,25 +119,13 @@ public class MainActivity extends AppCompatActivity {
     private void sendHitToAdmin() {
         try {
 
-/*
-            ArrayList<HashMap<String, String>> itemCodeList = new ArrayList<>();
-            HashMap map_code = new HashMap();
 
-            map_code.put("name", "saad - Andr");
-            map_code.put("message", "hello world");
-
-            itemCodeList.add(map_code);
-
-            String itemCodeJSON = new Gson().toJson(itemCodeList);
-*/
-
-            String msg = "{\"message\": \""+"HELLO WORLD"+"\", \"name\": \""+"SAAD ANDR"+"\", \"color\": \"#15E25F\"}";
+            String msg = "{\"message\": \""+"HELLO WORLD"+"\", \"name\": \""+"John Android"+"\", \"color\": \"#15E25F\"}";
 
             Log.d("Websocket", "msgSent:\n" + msg );
 
             mWebSocketClient.send( msg );
 
-            //mWebSocketClient.send("Hello World" );
 
         } catch (NotYetConnectedException e) {
             Log.d("Websocket", "sendHitToAdmin ERROR: \n" + e.getMessage());
